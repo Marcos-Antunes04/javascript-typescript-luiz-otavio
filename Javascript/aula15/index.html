@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercícios</title>
+</head>
+<body>
+    <section>
+        <h1>Trabalhando com números</h1>
+        <label>
+            Digite um número:
+            <input id="selectedNumber" type="number">
+            <button onclick="confirmNumber()">Confirmar</button>
+        </label>
+    </section>
+    <section>
+        <h2>Você selecionou o número: <span id="number"></span></h2>
+        <p id="results"></p>
+    </section>
+
+    <script>
+        function confirmNumber() {
+            let selectedNumber = Number(document.getElementById('selectedNumber').value);
+            let text = '';
+
+            text = `Raíz quadrada: ${selectedNumber ** 2} <br/>`
+            text += `${selectedNumber} é inteiro? ${Number.isInteger(selectedNumber)} <br/>`
+            text += `É Nan? ${Number.isNaN(selectedNumber)} <br/>`
+            text += `Arredondado para baixo: ${Math.floor(selectedNumber)} <br/>`
+            text += `Arredondado para cima: ${Math.ceil(selectedNumber)} <br/>`
+            text += `Com duas casas decimais: ${selectedNumber.toFixed(2)} <br/>`
+
+            document.getElementById('number').innerHTML = selectedNumber;
+            document.getElementById('results').innerHTML = text;
+            document.getElementById('selectedNumber').value = '';
+        }
+    </script>
+</body>
+</html>
