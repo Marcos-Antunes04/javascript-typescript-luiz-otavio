@@ -9,25 +9,23 @@
 </head>
 <body>
     <section class="container">
-        <h1>Lorem ipsum dolor sit amet</h1>
+        <h1>Tabela IMC</h1>
         <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Id ipsam non deserunt dolorem sunt nostrum illum aliquam quos harum laudantium, omnis provident obcaecati sapiente quidem, iusto voluptates! Explicabo, doloribus quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, consequatur et? Expedita, deserunt veritatis. Consequatur sapiente, numquam, harum delectus eos id quae, praesentium quos voluptas sit eligendi ad exercitationem laborum?
         </p>
-        <form action="">
-            <label for="input-teste-1">Label teste #1</label>
-            <input type="text" id="input-teste-1">
 
-            <label for="input-teste-2">Label teste #2</label>
-            <input type="text" id="input-teste-2">
+        <h2>Calcule seu IMC</h2>
+        <form action="/" id="form" method="post">
+            <label for="weight">Peso</label>
+            <input type="text" id="weight" name="weight">
 
-            <label for="input-teste-3">Label teste #3</label>
-            <input type="text" id="input-teste-3">
+            <label for="height">Altura</label>
+            <input type="text" id="height" name="height">
 
-            <label for="input-teste-4">Label teste #4</label>
-            <input type="text" id="input-teste-4">
-
-            <button>Enviar</button>
+            <button type="submit">Calcular</button>
         </form>
+
+        <div id="result"></div>
     </section>
 
     <script src="./assets/js/main.js"></script>
