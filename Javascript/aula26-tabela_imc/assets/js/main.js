@@ -53,8 +53,7 @@ function setResult(msg, isValid) {
 
     const p = createP();
 
-    if (isValid) p.classList.add('p-valid-result');
-    if (!isValid) p.classList.add('p-invalid-result');
+    p.classList.add(isValid ? 'p-valid-result' : 'p-invalid-result')
 
     p.innerHTML = `${msg}`;
 
