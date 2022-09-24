@@ -24,3 +24,8 @@ function calc(event) {
     document.querySelector('#number-1').value = '';
     document.querySelector('#number-2').value = '';
 }
+
+//FUNÇÃO QUE RECEBE 2 NÚMEROS E RETORNA O MAIOR
+let max = (num1, num2) => {return num1 > num2 ?  num1 : num1 == num2 ? 'Números iguais' : num2;}
+
+console.log(max(10,2))
