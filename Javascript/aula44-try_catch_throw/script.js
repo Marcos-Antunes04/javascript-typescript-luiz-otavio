@@ -1,20 +1,36 @@
 // try {
-//     console.log(noExist);
+//     console.log(error);
+//     console.log('will not run');
 // } catch (err) {
-//     console.log('noExist no exist');
-//     console.log(err)
+//     console.log('handling the error');
+// } finally {
+//     console.log('will always be done')
 // }
 
-function sum(x, y) {
-    if (typeof x !== 'number' || typeof y !== 'number') {
-        throw new Error('x and y must be numbers');
+function returnHour(data) {
+    if (data && !(data instanceof Date)) {
+        throw new TypeError('Waiting for date instance.');
     }
-    return x + y;
+
+    if (!data) {
+        data = new Date();
+    }
+
+    return data.toLocaleTimeString('pt-BR', {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false,
+    })
 }
 
 try {
-    console.log(sum(10, 2))
-    console.log(sum('2', 2))
-} catch (err) {
-    console.log(err)
+    const date = new Date('01-01-1970 12:58:12');
+    let hour = returnHour(11);
+    console.log(hour);
+} catch(err) {
+    // handling error
+    console.log(err);
+} finally {
+    console.log('Have a nice day');
 }
