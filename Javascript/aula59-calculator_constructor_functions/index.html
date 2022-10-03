@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modelo</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+    <section class="container">
+        <h1>Calculator</h1>
+        <table id="calculator">
+            <tr>
+                <td id="td-display" colspan="4"><div id="display"></div></td>
+            </tr>
+            
+            <tr>
+                <td><button onclick="calculator.includeOperator(this.value)" value="+" class="btn btn-sim">+</button></td>
+                <td><button onclick="calculator.includeOperator(this.value)" value="-" class="btn btn-sim">-</button></td>
+                <td><button onclick="calculator.includeOperator(this.value)" value="*" class="btn btn-sim">x</button></td>
+                <td><button onclick="calculator.includeOperator(this.value)" value="/" class="btn btn-sim">÷</button></td>
+            </tr>
+
+            <tr>
+                <td><button onclick="calculator.includeNumber(this.value)" value="7" class="btn btn-num">7</button></td>
+                <td><button onclick="calculator.includeNumber(this.value)" value="8" class="btn btn-num">8</button></td>
+                <td><button onclick="calculator.includeNumber(this.value)" value="9" class="btn btn-num">9</button></td>
+                <td rowspan="4"><button onclick="calculator.calculate()" class="btn btn-equal">=</button></td>
+            </tr>
+
+            <tr>
+                <td><button onclick="calculator.includeNumber(this.value)" value="4" class="btn btn-num">4</button></td>
+                <td><button onclick="calculator.includeNumber(this.value)" value="5" class="btn btn-num">5</button></td>
+                <td><button onclick="calculator.includeNumber(this.value)" value="6" class="btn btn-num">6</button></td>
+            </tr>
+
+            <tr>
+                <td><button onclick="calculator.includeNumber(this.value)" value="1" class="btn btn-num">1</button></td>
+                <td><button onclick="calculator.includeNumber(this.value)" value="2" class="btn btn-num">2</button></td>
+                <td><button onclick="calculator.includeNumber(this.value)" value="3" class="btn btn-num">3</button></td>
+            </tr>
+            
+            <tr>
+                <td><button onclick="calculator.includeNumber(this.value)" value="0" id="zero" class="btn btn-num">0</button></td>
+                <td><button onclick="calculator.includeComma()" value="." class="btn btn-num">.</button></td>
+                <td><button onclick="calculator.clear()" class="btn btn-num">AC</button></td>
+            </tr>
+        </table>
+    </section>
+
+    <script src="./assets/js/main.js"></script>
+</body>
+</html>
