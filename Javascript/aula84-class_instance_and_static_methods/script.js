@@ -21,6 +21,6 @@ class RemoteControl {
 }
 
 const control1 = new RemoteControl('LG');
-control1.turnUpVolume();
-RemoteControl.changeBattery(); // static method -> can only be called by passing the class name. Change all classes that it extends.
+control1.turnUpVolume(); // instance method -> can access the instance properties.
+RemoteControl.changeBattery(); // static method -> can only be called by passing the Superclass name. Change all classes that it extends. Can't access the specific instance data.
 console.log(control1)
