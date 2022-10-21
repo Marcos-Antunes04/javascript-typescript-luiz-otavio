@@ -18,5 +18,3 @@ export default function generatePassword(qnt, capital, lowercase, numbers, symbo
 
     return passwordArray.join('').slice(0, qnt);
 }
-
-generatePassword(5, true, true, true, true);
