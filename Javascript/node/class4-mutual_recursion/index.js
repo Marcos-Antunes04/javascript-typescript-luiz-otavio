@@ -21,9 +21,9 @@ async function walk(files, rootDir) {
     }
 
     if (
-      !/\.html$/g.test(fileFullPath)
+      !/\.css$/g.test(fileFullPath)
     ) continue;
     console.log(fileFullPath);
   }
 }
-readdir('/media/luizotavio/Externo/JS/');
+readdir('/Users/ramon/Documents/Cursos/javascript-typescript-luiz-otavio/Javascript/');
