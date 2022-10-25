@@ -1,0 +1,19 @@
+{
+  "name": "class6-express_introduction",
+  "version": "1.0.0",
+  "description": "",
+  "main": "otherServer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon otherServer.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
