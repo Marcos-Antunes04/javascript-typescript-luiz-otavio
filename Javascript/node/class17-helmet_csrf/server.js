@@ -10,19 +10,20 @@ mongoose.connect(process.env.CONNECTIONSTRING, { useNewUrlParser: true, useUnifi
     .catch(e => console.log(e));
 
 const session = require('express-session');
-const MongoStore = require('connect-mongo');
-const flash = require('connect-flash');
+const MongoStore = require('connect-mongo'); //salva sessões na base de dados
+const flash = require('connect-flash'); //msg auto-destrutivas, dps de ler ela é apagada (comum em msgs de erros e feedbacks) - é necessário ter as sessões para serem chamadas
 
-const routes = require('./routes');
-const path = require('path');
-const { globalMiddleware, checkCsrfError, csrfMiddleware } = require('./src/middleware/middleware');
-const { use } = require('./routes');
-const helmet = require('helmet');
-const csrf = require('csurf');
+const routes = require('./routes'); // rotas da aplicação (pagina inicial, contatos, perfil)
+const path = require('path'); // caminhos com caminhos
+const helmet = require('helmet'); // recomendação do express para aplicação mais segura
+const csrf = require('csurf'); // necessário para criar tokens para formulários - faz com que nada externo consigo postar algoritmos para dentro da aplicação 
+const { globalMiddleware, checkCsrfError, csrfMiddleware } = require('./src/middleware/middleware'); //middlewares - funções que são executadas no caminho de uma rota (ex: verificar se o usuário está logado)
 
 app.use(helmet());
-app.use(express.urlencoded({extended:true}));
-app.use(express.static(path.resolve(__dirname, 'public')));
+
+app.use(express.urlencoded({extended:true})); // torna possível postar formulários para dentro da aplicação
+app.use(express.json()); // torna possível postar formulários para dentro da aplicação em formato json
+app.use(express.static(path.resolve(__dirname, 'public'))); // arquivos estáticos na plicação que devem ser acessados diretamente (img, css)
 
 const sessionOptions = session({
     secret: 'anything here',
@@ -37,16 +38,16 @@ const sessionOptions = session({
 app.use(sessionOptions);
 app.use(flash());
 
-app.set('views', path.resolve(__dirname, 'src', 'views'));
+app.set('views', path.resolve(__dirname, 'src', 'views')); //arquivos html que são renderizados 
 // app.set('views', './src/views');
-app.set('view engine', 'ejs');
+app.set('view engine', 'ejs'); // utilizado para renderizar de fato os arquivos em views
 
 app.use(csrf());
 //Our own middlewares
 app.use(globalMiddleware);
 app.use(csrfMiddleware);
-app.use(routes);
 app.use(checkCsrfError);
+app.use(routes);
 
 app.on('ready', () => {
     app.listen(3000, () => {

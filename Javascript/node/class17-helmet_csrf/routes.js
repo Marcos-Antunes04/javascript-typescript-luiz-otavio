@@ -13,7 +13,7 @@ function myMiddleware(req, res, next) {
 }
 
 // Home routes
-route.get('/', homeController.initialPage);
+route.get('/', homeController.initialPage); // escolhe qual model e qual view será utilizado na página
 route.post('/', homeController.treatPost);
 
 // Contact routes
