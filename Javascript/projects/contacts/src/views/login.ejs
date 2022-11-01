@@ -12,20 +12,20 @@
             <%- include('includes/messages') %>
 
             <div class="row">
-                <div class="col-lg">
+                <div class="col-lg my-4">
                     <h4>Make your registration</h4>
                     <p>If you don't have an account, fill in the form below</p>
 
                     <form action="/login/register" method="POST">
                         <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                         <div class="mb-3">
-                          <label class="form-label">
+                          <label class="form-label w-100">
                                 Your E-mail
                                 <input type="email" class="form-control" name="email">
                           </label>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">
+                            <label class="form-label w-100">
                                 Your Password
                                 <input type="password" class="form-control" name="password">
                             </label>
@@ -34,20 +34,20 @@
                     </form>
                 </div>
 
-                <div class="col-lg">
+                <div class="col-lg my-4">
                     <h4>Login</h4>
                     <p>If you already have an account, login below</p>
 
                     <form action="/login/login" method="POST">
                         <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                         <div class="mb-3">
-                          <label class="form-label">
+                          <label class="form-label w-100">
                                 Your E-mail
                                 <input type="email" class="form-control" name="email">
                           </label>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">
+                            <label class="form-label w-100">
                                 Your Password
                                 <input type="password" class="form-control" name="password">
                             </label>
