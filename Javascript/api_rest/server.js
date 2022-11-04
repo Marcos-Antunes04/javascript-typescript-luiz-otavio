@@ -1,3 +1,7 @@
-import sayHi from './app';
+import app from './app';
 
-sayHi();
+const port = 3001;
+app.listen(port, () => {
+  console.log(`Listening on port ${port}`);
+  console.log(`Ctrl + click -> http://localhost:${port}`);
+});
