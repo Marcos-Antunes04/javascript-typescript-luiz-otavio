@@ -26,6 +26,9 @@ export default class Student extends Model {
       email: {
         type: Sequelize.STRING,
         defaultValue: '',
+        unique: {
+          msg: 'E-mail already exists.',
+        },
         validate: {
           isEmail: {
             msg: 'Invalid e-mail.',
@@ -36,8 +39,8 @@ export default class Student extends Model {
         type: Sequelize.INTEGER,
         defaultValue: '',
         validate: {
-          isEmail: {
-            msg: 'Invalid e-mail.',
+          isInt: {
+            msg: 'Age must be an integer.',
           },
         },
       },
@@ -45,8 +48,8 @@ export default class Student extends Model {
         type: Sequelize.FLOAT,
         defaultValue: '',
         validate: {
-          isEmail: {
-            msg: 'Invalid e-mail.',
+          isFloat: {
+            msg: 'Weight must be an integer or float.',
           },
         },
       },
@@ -54,8 +57,8 @@ export default class Student extends Model {
         type: Sequelize.FLOAT,
         defaultValue: '',
         validate: {
-          isEmail: {
-            msg: 'Invalid e-mail.',
+          isFloat: {
+            msg: 'Height must be an integer or float.',
           },
         },
       },
