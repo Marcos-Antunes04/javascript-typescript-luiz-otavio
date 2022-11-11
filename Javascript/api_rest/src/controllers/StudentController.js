@@ -8,7 +8,7 @@ class StudentController {
       order: [['id', 'DESC'], [Photo, 'id', 'DESC']], // ordenação decrescente do atributo 'id'
       include: {
         model: Photo,
-        attributes: ['filename'], // mostra apenas o nome da foto
+        attributes: ['url', 'filename'], // mostra a url e o nome da foto no Insominia
       },
     });
     res.json(students);
@@ -40,7 +40,7 @@ class StudentController {
         order: [['id', 'DESC'], [Photo, 'id', 'DESC']], // ordenação decrescente do atributo 'id'
         include: {
           model: Photo,
-          attributes: ['filename'], // mostra apenas o nome da foto
+          attributes: ['url', 'filename'], // mostra apenas a url e o nome da foto
         },
       });
 
