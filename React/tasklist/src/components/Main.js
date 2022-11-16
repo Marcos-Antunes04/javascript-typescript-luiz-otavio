@@ -13,11 +13,22 @@ export default class Main extends Component {
     tasks: []
   }
 
+  validateTask() {
+    const inputValue = document.querySelector('.taskname').value;
+    if(inputValue.trim() === '') {
+      return false
+    }
+
+    return inputValue;
+  }
+
   handleSubmit = (e) => {
+    if(!this.validateTask()) return;
+
     e.preventDefault();
     let { newTask, tasks } = this.state;
 
-    newTask = newTask.trim().toLowerCase();
+    newTask = newTask.trim();
 
     if(tasks.indexOf(newTask) !== -1) return;
 
@@ -34,6 +45,20 @@ export default class Main extends Component {
     })
   }
 
+  handleEdit = (e, index) => {
+    console.log('Edit', index)
+  }
+
+  handleDelete = (e, index) => {
+    const { tasks } = this.state;
+    const newTasks = [...tasks];
+    newTasks.splice(index, 1);
+
+    this.setState({
+      tasks:  newTasks,
+    })
+  }
+
   render() {
     const { newTask, tasks } = this.state
 
@@ -42,7 +67,7 @@ export default class Main extends Component {
         <h1>Tasklist</h1>
 
         <form onSubmit={this.handleSubmit} className='form' action="#">
-          <input onChange={this.handleInputChange} type="text" value={newTask} />
+          <input onChange={this.handleInputChange} type="text" value={newTask} className="taskname" />
 
           <button type="submit">
             <FaPlus />
@@ -50,12 +75,12 @@ export default class Main extends Component {
         </form>
 
         <ul className='tasks'>
-          { tasks.map(task => (
-            <li key={task}>
+          { tasks.map((task, index) => (
+            <li key={index}>
               {task}
               <span>
-                <FaEdit className='edit' />
-                <FaWindowClose className='delete' />
+                <FaEdit onClick={(e) => this.handleEdit(e, index)} className='edit' />
+                <FaWindowClose onClick={(e) => this.handleDelete(e, index)} className='delete' />
               </span>
             </li>
           )) }
