@@ -49,6 +49,11 @@
   transition: all .2s;
 }
 
+.tasks li span {
+  display: flex;
+  align-items: center;
+}
+
 
 .tasks li:hover {
   background-color: #51c5de;

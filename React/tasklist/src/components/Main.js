@@ -10,11 +10,22 @@ import { FaEdit, FaWindowClose } from 'react-icons/fa'
 export default class Main extends Component {
   state = {
     newTask: '',
-    tasks: [
-      'Make coffee',
-      'Drink water',
-      'Study'
-    ]
+    tasks: []
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    let { newTask, tasks } = this.state;
+
+    newTask = newTask.trim().toLowerCase();
+
+    if(tasks.indexOf(newTask) !== -1) return;
+
+    const newTasks = [...tasks];
+
+    this.setState({
+      tasks: [...newTasks, newTask]
+    })
   }
 
   handleInputChange = (e) => {
@@ -30,7 +41,7 @@ export default class Main extends Component {
       <div className="main">
         <h1>Tasklist</h1>
 
-        <form className='form' action="#">
+        <form onSubmit={this.handleSubmit} className='form' action="#">
           <input onChange={this.handleInputChange} type="text" value={newTask} />
 
           <button type="submit">
@@ -42,10 +53,10 @@ export default class Main extends Component {
           { tasks.map(task => (
             <li key={task}>
               {task}
-              <div>
+              <span>
                 <FaEdit className='edit' />
                 <FaWindowClose className='delete' />
-              </div>
+              </span>
             </li>
           )) }
         </ul>
