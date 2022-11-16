@@ -10,7 +10,8 @@ import { FaEdit, FaWindowClose } from 'react-icons/fa'
 export default class Main extends Component {
   state = {
     newTask: '',
-    tasks: []
+    tasks: [],
+    index: -1,
   }
 
   validateTask() {
@@ -26,7 +27,7 @@ export default class Main extends Component {
     if(!this.validateTask()) return;
 
     e.preventDefault();
-    let { newTask, tasks } = this.state;
+    let { newTask, tasks, index } = this.state;
 
     newTask = newTask.trim();
 
@@ -34,9 +35,20 @@ export default class Main extends Component {
 
     const newTasks = [...tasks];
 
-    this.setState({
-      tasks: [...newTasks, newTask]
-    })
+    if(index === -1) {
+      this.setState({
+        tasks: [...newTasks, newTask],
+        newTask: '',
+      })
+    } else {
+      newTasks[index] = newTask;
+
+      this.setState({
+        tasks: [...newTasks],
+        index: -1,
+      })
+    }
+
   }
 
   handleInputChange = (e) => {
@@ -46,7 +58,12 @@ export default class Main extends Component {
   }
 
   handleEdit = (e, index) => {
-    console.log('Edit', index)
+    const { tasks }  = this.state;
+
+    this.setState({
+      index,
+      newTask: tasks[index]
+    })
   }
 
   handleDelete = (e, index) => {
