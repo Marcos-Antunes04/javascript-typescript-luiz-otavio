@@ -1,0 +1,24 @@
+<%- include('includes/head') %>
+    <section class="container">
+        <h1>
+            <% if(typeof title !== 'undefined') { %>
+                <%- title %> <!-- esse "title" veio de homeController.js passado como parâmetro em res.render() -->
+            <% } else { %>
+                The title was not sent
+            <% } %>
+        </h1>
+
+        <p><%- subtitle %></p>
+        <p><%= subtitle %></p>
+
+        <form action="/" method="POST">
+            <label>Client</label>
+            <input type="text" name="client">
+            <button type="submit">Send</button>
+        </form>
+
+        <% numbers.forEach(number => { %>
+            <%= number %>
+        <% }) %>
+    </section>
+<%- include('includes/footer') %>
