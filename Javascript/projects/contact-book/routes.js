@@ -1,13 +1,12 @@
 const express = require('express');
 const route = express.Router(); // ficará com todas as rotas da aplicação, por isso devemos exportar o "route" para o server
 const homeController = require('./src/controllers/homeController');
-const contactsController = require('./src/controllers/contactsController');
+const loginController = require('./src/controllers/loginController');
 
 // Home routes
-route.get('/', homeController.initialPage);
-route.post('/', homeController.handlePost);
+route.get('/', homeController.index);
 
-// Contacts routes
-route.get('/contacts', contactsController.initialPage);
+// Login routes
+route.get('/login/index', loginController.index);
 
 module.exports = route;
