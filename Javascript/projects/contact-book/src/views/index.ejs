@@ -1,0 +1,16 @@
+<%- include('includes/head') %>
+    <section class="container">
+        <h1>
+            <%- title %>
+        </h1>
+
+        <form action="/" method="POST">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>"> 
+            <!-- sem o csrfToken (criado em csrfMiddleware[middleware.js] não seria permitido enviar o formulário, cairia na página de erro 404) -->
+            <label>Client</label>
+            <input type="text" name="client">
+            <button type="submit">Send</button>
+        </form>
+
+    </section>
+<%- include('includes/footer') %>
