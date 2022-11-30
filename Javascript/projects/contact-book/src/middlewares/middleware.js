@@ -1,5 +1,6 @@
 exports.globalMiddleware = (req, res, next) => {
-    res.locals.localVar = 'This is the value of local variable'; // variável local que pode ser utilizada em qualquer lugar da aplicação, inclusive no index.ejs
+    res.locals.errors = req.flash('errors'); // variável local que pode ser utilizada em qualquer lugar da aplicação, inclusive no index.ejs. Nesse caso foram utilizadas 
+    res.locals.success = req.flash('success');
     next();
 };
 
@@ -7,7 +8,6 @@ exports.checkCsrfError = (err, req, res, next) => { // caso tenha algum erro, en
     if (err) {
         return res.render('404')
     }
-    
     next();
 }
 

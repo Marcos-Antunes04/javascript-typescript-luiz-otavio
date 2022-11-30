@@ -1,0 +1,57 @@
+const mongoose = require('mongoose'); // responsável por inserir os dados no banco de dados (base de dados, tabelas, dados)
+const validator = require('validator'); // para validação dos campos de formulário
+
+// data configs
+const LoginSchema = new mongoose.Schema({ // tratamento e modelagem dos dados antes de salvá-lo no banco de dados (MongoDB)
+    email: { type: String, required: true }, 
+    password: { type: String, required: true }, 
+});
+
+const LoginModel = mongoose.model('Login', LoginSchema); // 1º parâmetro é o nome do model e o 2º o nome do Schema
+
+class Login {
+    constructor(body) {
+        this.body = body;
+        this.errors = [];
+        this.user = null;
+    }
+
+    async register() {
+        this.validate();
+        if(this.errors.length > 0) return;
+
+        try {
+            this.user = await LoginModel.create(this.body);
+        } catch(e) {
+            console.log(e);
+        }
+    }
+
+    validate() {
+        this.cleanUp();
+
+        // VALIDATION
+        // The e-mail must be valid
+        if(!validator.isEmail(this.body.email)) this.errors.push('Invalid e-mail.');
+
+        // The password must be between 3 and 50 characters
+        if(this.body.password.length < 3 || this.body.password.length > 50) {
+            this.errors.push('The password must be between 3 and 50 characters.')
+        };
+    }
+
+    cleanUp() {
+        for(let key in this.body) {
+            if(typeof this.body[key] !== 'string') {
+                this.body[key] = '';
+            }
+        }
+
+        this.body = {
+            email: this.body.email,
+            password: this.body.password
+        }
+    }
+}
+
+module.exports = Login;
