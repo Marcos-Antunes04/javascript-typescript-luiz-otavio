@@ -1,5 +1,6 @@
 const mongoose = require('mongoose'); // responsável por inserir os dados no banco de dados (base de dados, tabelas, dados)
 const validator = require('validator'); // para validação dos campos de formulário
+const bcryptjs = require('bcryptjs'); // criar um hash de senha
 
 // data configs
 const LoginSchema = new mongoose.Schema({ // tratamento e modelagem dos dados antes de salvá-lo no banco de dados (MongoDB)
@@ -20,11 +21,22 @@ class Login {
         this.validate();
         if(this.errors.length > 0) return;
 
+        await this.userExists();
+        if(this.errors.length > 0) return;
+
+        const salt = bcryptjs.genSaltSync(); // gera um salt
+        this.body.password = bcryptjs.hashSync(this.body.password, salt); // faz o hash da senha baseado no valor da senha e do salt gerado
+
         try {
             this.user = await LoginModel.create(this.body);
         } catch(e) {
             console.log(e);
         }
+    }
+
+    async userExists() {
+        const user = await LoginModel.findOne({ email: this.body.email });
+        if(user) this.errors.push('User already exists.');
     }
 
     validate() {
