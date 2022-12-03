@@ -16,3 +16,13 @@ exports.csrfMiddleware = (req, res, next) => { // enviará para todas as página
     res.locals.csrfToken = req.csrfToken();
     next();
 }
+
+exports.loginRequired = (req, res, next) => {
+    if(!req.session.user) {
+        req.flash('errors', 'You need to be logged.'); // caso o usuário não estiver logado, ele não poderá acessar a página
+        req.session.save(() => res.redirect('/')); // como usuário não está logado, ele deve ser redirecionado para outra página
+        return;
+    }
+
+    next();
+}
