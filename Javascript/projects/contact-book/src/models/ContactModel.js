@@ -55,4 +55,11 @@ Contact.prototype.cleanUp = function() {
     }
 };
 
+Contact.prototype.edit = async function(id) {
+    if(typeof id !== 'string') return;
+    this.validate();
+    if(this.errors.length > 0) return;
+    this.contact = await ContactModel.findByIdAndUpdate(id, this.body, { new: true }); // .findByIdAndUpdate atualiza os dados no banco, seu último parâmetro faz com que seja utilizados os novos dados ao invés dos antigos.
+}
+
 module.exports = Contact;
