@@ -1,6 +1,9 @@
+// Pegar os contatos da base de dados para renderizá-los em tela
+const Contact = require('../models/ContactModel');
+
 // Renderização da página inicial
-exports.index = (req, res) => {
+exports.index = async (req, res) => {
     // RENDERIZAÇÃO DA HOME
-    res.render('index');
-    return;
+    const contacts = await Contact.searchContacts();
+    res.render('index', { contacts });
 };

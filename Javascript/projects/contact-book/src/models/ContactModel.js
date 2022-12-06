@@ -18,12 +18,6 @@ function Contact(body) {
     this.contact = null;
 };
 
-Contact.searchById = async function(id) {
-    if(typeof id !== 'string') return;
-    const user = await ContactModel.findById(id);
-    return user;
-}
-
 Contact.prototype.register = async function() {
     this.validate();
     
@@ -60,6 +54,26 @@ Contact.prototype.edit = async function(id) {
     this.validate();
     if(this.errors.length > 0) return;
     this.contact = await ContactModel.findByIdAndUpdate(id, this.body, { new: true }); // .findByIdAndUpdate atualiza os dados no banco, seu último parâmetro faz com que seja utilizados os novos dados ao invés dos antigos.
-}
+};
+
+// Métodos estáticos (não vão p/ o prototype, e, por isso não tem acesso ao "this")
+Contact.searchById = async function(id) {
+    if(typeof id !== 'string') return;
+    const contact = await ContactModel.findById(id);
+    return contact;
+};
+
+Contact.searchContacts = async function() {
+    const contacts = await ContactModel.find() // em ".find" é possível filtrar os resultados, basta colocar um argumento nele ex: .find({ email: exemplo@email.com })
+        .sort({ createdAt: -1 }); // ordenação dos resultados de .find(). Sendo 1 para ordem crescente e -1 p/ ordem descrescente
+    return contacts;
+};
+
+Contact.delete = async function(id) {
+    if(typeof id !== 'string') return;
+
+    const contact = await ContactModel.findOneAndDelete(id);
+    return contact;
+};
 
 module.exports = Contact;
