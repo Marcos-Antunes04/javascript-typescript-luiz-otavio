@@ -1,3 +1,9 @@
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+import './src/database'; // executando o arquivo ao iniciar a aplicação
+
 import express from 'express';
 import homeRoutes from './src/routes/homeRoutes';
 
