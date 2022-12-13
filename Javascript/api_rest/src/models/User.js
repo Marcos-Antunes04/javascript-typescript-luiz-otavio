@@ -48,7 +48,9 @@ export default class User extends Model {
     });
 
     this.addHook('beforeSave', async (user) => { // utilização do bcrypt para "criptografar" a senha e uso do Hook para antes de salvar, passar os dados validados do campo de password para password_hash
-      user.password_hash = await bcryptjs.hash(user.password, 8);
+      if (user.password) {
+        user.password_hash = await bcryptjs.hash(user.password, 8);
+      }
     });
 
     return this;
