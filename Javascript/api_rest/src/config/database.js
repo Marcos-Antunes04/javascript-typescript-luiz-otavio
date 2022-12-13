@@ -12,7 +12,7 @@ module.exports = {
     timestamps: true, // cria um campo para exibir as informações de quando um dado foi inserido/alterado na tabela
     underscored: true, // na tabela, caso tenha um campo chamado 'nomeAluno', transforma em: 'nome_aluno' (converte camel case  para snake case)
     underscoredAll: true,
-    createdAt: 'created_at', // correção de bug do underscored, que não funciona da mesma forma em todos os lugares
+    createdAt: 'created_at', // correção de bug do underscored, que não funciona da mesma forma em todos os casos
     updatedAt: 'updated_at',
   },
   dialectOptions: {
